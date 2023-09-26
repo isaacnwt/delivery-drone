@@ -10,4 +10,16 @@ public class Box {
         this.sideB = sideB;
         this.sideC = sideC;
     }
+
+    public int getSideA() {
+        return sideA;
+    }
+
+    public int getSideB() {
+        return sideB;
+    }
+
+    public int getSideC() {
+        return sideC;
+    }
 }
