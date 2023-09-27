@@ -1,8 +1,8 @@
 package org.example;
 
 public class Window {
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
 
     public Window(int height, int width) {
         this.height = height;
