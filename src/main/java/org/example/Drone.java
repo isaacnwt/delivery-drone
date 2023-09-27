@@ -3,7 +3,7 @@ package org.example;
 
 public class Drone {
     private Box box;
-    public void getBox(Box box) {
+    public void setBox(Box box) {
         this.box = box;
     }
 
@@ -11,8 +11,11 @@ public class Drone {
         if(box != null) {
             if (this.areAllBoxSidesLargerThanTheWindow(window)) {
                 return "N";
+            } else if (this.theBoxPassesTheWindow(window)) {
+                return "S";
+            } else {
+                return "N";
             }
-            return "S";
         } else throw new NullPointerException("The drone doesn't have a box to deliver");
     }
 
@@ -23,5 +26,16 @@ public class Drone {
             && this.box.getSideB() > window.getWidth()
             && this.box.getSideC() > window.getHeight()
             && this.box.getSideC() > window.getWidth();
+    }
+
+    private boolean theBoxPassesTheWindow(Window window) {
+        return isABoxFaceParallelToWindow(box.getSideA(), box.getSideB(), window)
+            || isABoxFaceParallelToWindow(box.getSideA(), box.getSideC(), window)
+            || isABoxFaceParallelToWindow(box.getSideB(), box.getSideC(), window);
+    }
+    
+    private boolean isABoxFaceParallelToWindow(int boxHeight, int boxWidth, Window window) {
+        return (boxHeight <= window.getWidth() && boxWidth <= window.getHeight())
+            || (boxHeight <= window.getHeight() && boxWidth <= window.getWidth());
     }
 }
