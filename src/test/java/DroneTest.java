@@ -26,14 +26,21 @@ class DroneTest {
     }
 
     @Test
-    @DisplayName("Should deliver a box with at least one side passing throw the window")
-    void shouldDeliverABoxWithAtLeastOneSidePassingThrowTheWindow() {
+    @DisplayName("Should deliver a box with at least one face passing throw the window")
+    void shouldDeliverABoxWithAtLeastOneFacePassingThrowTheWindow() {
         Box box = new Box(2, 3, 4);
         Window window = new Window(2, 3);
         drone.setBox(box);
         assertThat(drone.deliver(window)).isEqualTo("S");
     }
 
-
+    @Test
+    @DisplayName("Should not deliver a box with just one face side smaller than window")
+    void shouldNotDeliverABoxWithJustOneFaceSideSmallerThanWindow() {
+        Box box = new Box(4, 5, 6);
+        Window window = new Window(10, 3);
+        drone.setBox(box);
+        assertThat(drone.deliver(window)).isEqualTo("N");
+    }
 
 }
